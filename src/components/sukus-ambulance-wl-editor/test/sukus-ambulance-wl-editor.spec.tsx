@@ -7,6 +7,7 @@ describe('sukus-ambulance-wl-editor', () => {
       components: [SukusAmbulanceWlEditor],
       html: `<sukus-ambulance-wl-editor></sukus-ambulance-wl-editor>`,
     });
+    expect(page).toBeDefined();
     // expect(page.root).toEqualHtml(`
     //   <sukus-ambulance-wl-editor>
     //     <mock:shadow-root>

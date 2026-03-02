@@ -7,6 +7,7 @@ describe('sukus-ambulance-wl-app', () => {
       components: [SukusAmbulanceWlApp],
       html: `<sukus-ambulance-wl-app></sukus-ambulance-wl-app>`,
     });
+    expect(page).toBeDefined();
     // expect(page.root).toEqualHtml(`
     //   <sukus-ambulance-wl-app>
     //     <mock:shadow-root>
