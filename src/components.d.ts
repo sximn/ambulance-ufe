@@ -6,10 +6,46 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface SukusAmbulanceWlApp {
+        /**
+          * @default ""
+         */
+        "basePath": string;
+    }
+    interface SukusAmbulanceWlEditor {
+        "entryId": string;
+    }
     interface SukusAmbulanceWlList {
     }
 }
+export interface SukusAmbulanceWlEditorCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLSukusAmbulanceWlEditorElement;
+}
 declare global {
+    interface HTMLSukusAmbulanceWlAppElement extends Components.SukusAmbulanceWlApp, HTMLStencilElement {
+    }
+    var HTMLSukusAmbulanceWlAppElement: {
+        prototype: HTMLSukusAmbulanceWlAppElement;
+        new (): HTMLSukusAmbulanceWlAppElement;
+    };
+    interface HTMLSukusAmbulanceWlEditorElementEventMap {
+        "editor-closed": string;
+    }
+    interface HTMLSukusAmbulanceWlEditorElement extends Components.SukusAmbulanceWlEditor, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLSukusAmbulanceWlEditorElementEventMap>(type: K, listener: (this: HTMLSukusAmbulanceWlEditorElement, ev: SukusAmbulanceWlEditorCustomEvent<HTMLSukusAmbulanceWlEditorElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLSukusAmbulanceWlEditorElementEventMap>(type: K, listener: (this: HTMLSukusAmbulanceWlEditorElement, ev: SukusAmbulanceWlEditorCustomEvent<HTMLSukusAmbulanceWlEditorElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLSukusAmbulanceWlEditorElement: {
+        prototype: HTMLSukusAmbulanceWlEditorElement;
+        new (): HTMLSukusAmbulanceWlEditorElement;
+    };
     interface HTMLSukusAmbulanceWlListElement extends Components.SukusAmbulanceWlList, HTMLStencilElement {
     }
     var HTMLSukusAmbulanceWlListElement: {
@@ -17,13 +53,35 @@ declare global {
         new (): HTMLSukusAmbulanceWlListElement;
     };
     interface HTMLElementTagNameMap {
+        "sukus-ambulance-wl-app": HTMLSukusAmbulanceWlAppElement;
+        "sukus-ambulance-wl-editor": HTMLSukusAmbulanceWlEditorElement;
         "sukus-ambulance-wl-list": HTMLSukusAmbulanceWlListElement;
     }
 }
 declare namespace LocalJSX {
+    interface SukusAmbulanceWlApp {
+        /**
+          * @default ""
+         */
+        "basePath"?: string;
+    }
+    interface SukusAmbulanceWlEditor {
+        "entryId"?: string;
+        "onEditor-closed"?: (event: SukusAmbulanceWlEditorCustomEvent<string>) => void;
+    }
     interface SukusAmbulanceWlList {
     }
+
+    interface SukusAmbulanceWlAppAttributes {
+        "basePath": string;
+    }
+    interface SukusAmbulanceWlEditorAttributes {
+        "entryId": string;
+    }
+
     interface IntrinsicElements {
+        "sukus-ambulance-wl-app": Omit<SukusAmbulanceWlApp, keyof SukusAmbulanceWlAppAttributes> & { [K in keyof SukusAmbulanceWlApp & keyof SukusAmbulanceWlAppAttributes]?: SukusAmbulanceWlApp[K] } & { [K in keyof SukusAmbulanceWlApp & keyof SukusAmbulanceWlAppAttributes as `attr:${K}`]?: SukusAmbulanceWlAppAttributes[K] } & { [K in keyof SukusAmbulanceWlApp & keyof SukusAmbulanceWlAppAttributes as `prop:${K}`]?: SukusAmbulanceWlApp[K] };
+        "sukus-ambulance-wl-editor": Omit<SukusAmbulanceWlEditor, keyof SukusAmbulanceWlEditorAttributes> & { [K in keyof SukusAmbulanceWlEditor & keyof SukusAmbulanceWlEditorAttributes]?: SukusAmbulanceWlEditor[K] } & { [K in keyof SukusAmbulanceWlEditor & keyof SukusAmbulanceWlEditorAttributes as `attr:${K}`]?: SukusAmbulanceWlEditorAttributes[K] } & { [K in keyof SukusAmbulanceWlEditor & keyof SukusAmbulanceWlEditorAttributes as `prop:${K}`]?: SukusAmbulanceWlEditor[K] };
         "sukus-ambulance-wl-list": SukusAmbulanceWlList;
     }
 }
@@ -31,6 +89,8 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "sukus-ambulance-wl-app": LocalJSX.IntrinsicElements["sukus-ambulance-wl-app"] & JSXBase.HTMLAttributes<HTMLSukusAmbulanceWlAppElement>;
+            "sukus-ambulance-wl-editor": LocalJSX.IntrinsicElements["sukus-ambulance-wl-editor"] & JSXBase.HTMLAttributes<HTMLSukusAmbulanceWlEditorElement>;
             "sukus-ambulance-wl-list": LocalJSX.IntrinsicElements["sukus-ambulance-wl-list"] & JSXBase.HTMLAttributes<HTMLSukusAmbulanceWlListElement>;
         }
     }
