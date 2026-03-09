@@ -55,7 +55,9 @@ export class SukusAmbulanceWlApp {
       ? <sukus-ambulance-wl-editor entry-id={entryId}
           oneditor-closed={ () => navigate("./list")} >
         </sukus-ambulance-wl-editor>
-      : <sukus-ambulance-wl-list></sukus-ambulance-wl-list>
+      : <sukus-ambulance-wl-list
+          onentry-clicked={ (ev: CustomEvent<string>)=> navigate("./entry/" + ev.detail) }>
+        </sukus-ambulance-wl-list>
       }
 
     </Host>

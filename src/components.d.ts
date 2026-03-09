@@ -22,6 +22,10 @@ export interface SukusAmbulanceWlEditorCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLSukusAmbulanceWlEditorElement;
 }
+export interface SukusAmbulanceWlListCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLSukusAmbulanceWlListElement;
+}
 declare global {
     interface HTMLSukusAmbulanceWlAppElement extends Components.SukusAmbulanceWlApp, HTMLStencilElement {
     }
@@ -46,7 +50,18 @@ declare global {
         prototype: HTMLSukusAmbulanceWlEditorElement;
         new (): HTMLSukusAmbulanceWlEditorElement;
     };
+    interface HTMLSukusAmbulanceWlListElementEventMap {
+        "entry-clicked": string;
+    }
     interface HTMLSukusAmbulanceWlListElement extends Components.SukusAmbulanceWlList, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLSukusAmbulanceWlListElementEventMap>(type: K, listener: (this: HTMLSukusAmbulanceWlListElement, ev: SukusAmbulanceWlListCustomEvent<HTMLSukusAmbulanceWlListElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLSukusAmbulanceWlListElementEventMap>(type: K, listener: (this: HTMLSukusAmbulanceWlListElement, ev: SukusAmbulanceWlListCustomEvent<HTMLSukusAmbulanceWlListElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLSukusAmbulanceWlListElement: {
         prototype: HTMLSukusAmbulanceWlListElement;
@@ -70,6 +85,7 @@ declare namespace LocalJSX {
         "onEditor-closed"?: (event: SukusAmbulanceWlEditorCustomEvent<string>) => void;
     }
     interface SukusAmbulanceWlList {
+        "onEntry-clicked"?: (event: SukusAmbulanceWlListCustomEvent<string>) => void;
     }
 
     interface SukusAmbulanceWlAppAttributes {
