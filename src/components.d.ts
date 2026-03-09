@@ -7,6 +7,8 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface SukusAmbulanceWlApp {
+        "ambulanceId": string;
+        "apiBase": string;
         /**
           * @default ""
          */
@@ -16,6 +18,8 @@ export namespace Components {
         "entryId": string;
     }
     interface SukusAmbulanceWlList {
+        "ambulanceId": string;
+        "apiBase": string;
     }
 }
 export interface SukusAmbulanceWlEditorCustomEvent<T> extends CustomEvent<T> {
@@ -75,6 +79,8 @@ declare global {
 }
 declare namespace LocalJSX {
     interface SukusAmbulanceWlApp {
+        "ambulanceId"?: string;
+        "apiBase"?: string;
         /**
           * @default ""
          */
@@ -85,20 +91,28 @@ declare namespace LocalJSX {
         "onEditor-closed"?: (event: SukusAmbulanceWlEditorCustomEvent<string>) => void;
     }
     interface SukusAmbulanceWlList {
+        "ambulanceId"?: string;
+        "apiBase"?: string;
         "onEntry-clicked"?: (event: SukusAmbulanceWlListCustomEvent<string>) => void;
     }
 
     interface SukusAmbulanceWlAppAttributes {
         "basePath": string;
+        "apiBase": string;
+        "ambulanceId": string;
     }
     interface SukusAmbulanceWlEditorAttributes {
         "entryId": string;
+    }
+    interface SukusAmbulanceWlListAttributes {
+        "apiBase": string;
+        "ambulanceId": string;
     }
 
     interface IntrinsicElements {
         "sukus-ambulance-wl-app": Omit<SukusAmbulanceWlApp, keyof SukusAmbulanceWlAppAttributes> & { [K in keyof SukusAmbulanceWlApp & keyof SukusAmbulanceWlAppAttributes]?: SukusAmbulanceWlApp[K] } & { [K in keyof SukusAmbulanceWlApp & keyof SukusAmbulanceWlAppAttributes as `attr:${K}`]?: SukusAmbulanceWlAppAttributes[K] } & { [K in keyof SukusAmbulanceWlApp & keyof SukusAmbulanceWlAppAttributes as `prop:${K}`]?: SukusAmbulanceWlApp[K] };
         "sukus-ambulance-wl-editor": Omit<SukusAmbulanceWlEditor, keyof SukusAmbulanceWlEditorAttributes> & { [K in keyof SukusAmbulanceWlEditor & keyof SukusAmbulanceWlEditorAttributes]?: SukusAmbulanceWlEditor[K] } & { [K in keyof SukusAmbulanceWlEditor & keyof SukusAmbulanceWlEditorAttributes as `attr:${K}`]?: SukusAmbulanceWlEditorAttributes[K] } & { [K in keyof SukusAmbulanceWlEditor & keyof SukusAmbulanceWlEditorAttributes as `prop:${K}`]?: SukusAmbulanceWlEditor[K] };
-        "sukus-ambulance-wl-list": SukusAmbulanceWlList;
+        "sukus-ambulance-wl-list": Omit<SukusAmbulanceWlList, keyof SukusAmbulanceWlListAttributes> & { [K in keyof SukusAmbulanceWlList & keyof SukusAmbulanceWlListAttributes]?: SukusAmbulanceWlList[K] } & { [K in keyof SukusAmbulanceWlList & keyof SukusAmbulanceWlListAttributes as `attr:${K}`]?: SukusAmbulanceWlListAttributes[K] } & { [K in keyof SukusAmbulanceWlList & keyof SukusAmbulanceWlListAttributes as `prop:${K}`]?: SukusAmbulanceWlList[K] };
     }
 }
 export { LocalJSX as JSX };

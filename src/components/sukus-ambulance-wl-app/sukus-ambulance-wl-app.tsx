@@ -13,6 +13,8 @@ export class SukusAmbulanceWlApp {
   @State() private relativePath = "";
 
   @Prop() basePath: string="";
+  @Prop() apiBase: string;
+  @Prop() ambulanceId: string;
 
   componentWillLoad() {
     const baseUri = new URL(this.basePath, document.baseURI || "/").pathname;
@@ -56,7 +58,9 @@ export class SukusAmbulanceWlApp {
           oneditor-closed={ () => navigate("./list")} >
         </sukus-ambulance-wl-editor>
       : <sukus-ambulance-wl-list
-          onentry-clicked={ (ev: CustomEvent<string>)=> navigate("./entry/" + ev.detail) }>
+          ambulance-id={this.ambulanceId} api-base={this.apiBase}
+          onentry-clicked={ (ev: CustomEvent<string>)=> navigate("./entry/" + ev.detail) }
+        >
         </sukus-ambulance-wl-list>
       }
 
