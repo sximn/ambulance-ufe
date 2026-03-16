@@ -55,6 +55,7 @@ export class SukusAmbulanceWlApp {
     <Host>
       { element === "editor"
       ? <sukus-ambulance-wl-editor entry-id={entryId}
+          ambulance-id={this.ambulanceId} api-base={this.apiBase}
           oneditor-closed={ () => navigate("./list")} >
         </sukus-ambulance-wl-editor>
       : <sukus-ambulance-wl-list
