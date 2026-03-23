@@ -37,35 +37,36 @@ export class SukusAmbulanceWlApp {
   }
 
   render() {
-  let element = "list"
-  let entryId = "@new"
+    console.debug("-ambulance-wl-app.render() - path: %s", this.relativePath);
+    let element = "list"
+    let entryId = "@new"
 
-  if ( this.relativePath.startsWith("entry/"))
-  {
-    element = "editor";
-    entryId = this.relativePath.split("/")[1]
+    if ( this.relativePath.startsWith("entry/"))
+    {
+      element = "editor";
+      entryId = this.relativePath.split("/")[1]
+    }
+
+    const navigate = (path:string) => {
+      const absolute = new URL(path, new URL(this.basePath, document.baseURI)).pathname;
+      window.navigation.navigate(absolute)
+    }
+
+    return (
+      <Host>
+        { element === "editor"
+        ? <sukus-ambulance-wl-editor entry-id={entryId}
+            ambulance-id={this.ambulanceId} api-base={this.apiBase}
+            oneditor-closed={ () => navigate("./list")} >
+          </sukus-ambulance-wl-editor>
+        : <sukus-ambulance-wl-list
+            ambulance-id={this.ambulanceId} api-base={this.apiBase}
+            onentry-clicked={ (ev: CustomEvent<string>)=> navigate("./entry/" + ev.detail) }
+          >
+          </sukus-ambulance-wl-list>
+        }
+
+      </Host>
+    );
   }
-
-  const navigate = (path:string) => {
-    const absolute = new URL(path, new URL(this.basePath, document.baseURI)).pathname;
-    window.navigation.navigate(absolute)
-  }
-
-  return (
-    <Host>
-      { element === "editor"
-      ? <sukus-ambulance-wl-editor entry-id={entryId}
-          ambulance-id={this.ambulanceId} api-base={this.apiBase}
-          oneditor-closed={ () => navigate("./list")} >
-        </sukus-ambulance-wl-editor>
-      : <sukus-ambulance-wl-list
-          ambulance-id={this.ambulanceId} api-base={this.apiBase}
-          onentry-clicked={ (ev: CustomEvent<string>)=> navigate("./entry/" + ev.detail) }
-        >
-        </sukus-ambulance-wl-list>
-      }
-
-    </Host>
-  );
-}
 }
